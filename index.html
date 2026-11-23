@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hegedüs Tamás</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* VOICE  formal, quiet academic homepage of a maths student
+   IDEA   a typeset LaTeX article: title block, numbered sections, ruled tables, hyperref-blue links
+   PICTURE a commutative-diagram style map of the semesters, with the Linz Erasmus+ term as a detour
+   COLOUR pure white paper, near-black ink, one deep ultramarine accent for numbers and links
+   TYPE   STIX Two Text throughout (Latin Modern / CMU if installed), small caps for the name
+   LAYOUT laptop: monogram + title block, diagram full width, sections below; phone: stacked, diagram vertical */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#121318);--ink:light-dark(#141414,#e8e6e1);--mute:light-dark(#5b5b5b,#a3a19b);--rule:light-dark(#d9d9d9,#34353c);--acc:light-dark(#2433a0,#9fadff);--tint:light-dark(#f3f4fb,#1b1d27)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Latin Modern Roman","CMU Serif","STIX Two Text",Georgia,serif;overflow-x:clip}
+a{color:var(--acc);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--acc) 35%,transparent)}
+a:hover{border-bottom-color:var(--acc)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+.page{max-width:900px;margin:0 auto;padding:0 max(5vw,16px) 48px}
+.top{display:flex;justify-content:flex-end;padding-top:18px}
+.lang{display:flex;gap:4px}
+.lang button{font:inherit;font-size:15px;min-height:44px;padding:0 14px;background:none;color:var(--mute);border:1px solid transparent;border-radius:3px;cursor:pointer}
+.lang button[aria-pressed=true]{color:var(--ink);border-color:var(--rule)}
+.lang button:hover{color:var(--ink)}
+header{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,40px);align-items:center;padding:20px 0 28px;border-bottom:1px solid var(--rule)}
+.photo{margin:0;width:clamp(120px,18vw,156px);aspect-ratio:3/4;border:1px solid var(--rule);background:var(--tint);display:grid;place-items:center}
+.photo svg{width:70%;height:auto}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+h1{font-size:clamp(34px,5vw,48px);line-height:1.05;letter-spacing:-.01em;font-weight:600;font-variant:small-caps;margin:0 0 6px;text-wrap:balance}
+.role{font-size:19px;font-style:italic;margin:0 0 14px}
+.aff{margin:0 0 14px;padding:0;list-style:none}
+.aff li{line-height:1.45}
+.mail{margin:0;font-size:16px}
+.mail span{color:var(--mute)}
+h2{font-size:26px;line-height:1.15;font-weight:700;margin:40px 0 6px}
+h3{font-size:19px;font-weight:700;margin:30px 0 10px}
+.n{color:var(--acc);display:inline-block;min-width:1.9em}
+h3 .n{min-width:2.4em}
+.lede{margin:0 0 18px;color:var(--mute);max-width:66ch}
+.fig{position:relative;height:210px;margin:8px 0 4px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.cap{font-size:15px;color:var(--mute);text-align:center;margin:6px 0 0}
+.cap b{color:var(--ink);font-weight:600}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px}
+thead th{text-align:left;font-weight:600;padding:8px 10px 8px 0;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--ink)}
+tbody td{padding:9px 10px 9px 0;vertical-align:top;border-bottom:1px solid var(--rule)}
+tbody tr:last-child td{border-bottom:1.5px solid var(--ink)}
+td.c,th.c{white-space:nowrap;color:var(--mute);font-variant-numeric:tabular-nums}
+td.f{white-space:nowrap}
+td.k,th.k{text-align:right;padding-right:0;white-space:nowrap;font-variant-numeric:tabular-nums}
+td small{color:var(--mute);font-size:14px}
+tfoot td{padding:8px 0 0;color:var(--mute);font-size:15px}
+tfoot td.k{color:var(--ink)}
+.sem{display:grid;grid-template-columns:11em minmax(0,1fr);gap:4px 22px;padding:14px 0;border-bottom:1px solid var(--rule)}
+.sem:first-of-type{border-top:1px solid var(--rule)}
+.sem dt{font-weight:600;line-height:1.4}
+.sem dt small{display:block;font-weight:400;color:var(--mute);font-size:15px}
+.sem dd{margin:0}
+.sem ul{margin:0;padding:0;list-style:none;columns:2;column-gap:28px}
+.sem li{break-inside:avoid;padding:1px 0}
+.sem .where{margin:0 0 6px;font-style:italic}
+.sem.ex dt{color:var(--acc)}
+.sem.now dt{color:var(--acc)}
+footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--rule);font-size:15px;color:var(--mute)}
+footer p{margin:0 0 4px}
+:root:not(.en) .en{display:none}
+:root.en .hu{display:none}
+@media(max-width:600px){
+body{font-size:16px}
+header{grid-template-columns:1fr;justify-items:start}
+.photo{width:120px}
+.fig{height:400px;margin-bottom:10px}
+.sem{grid-template-columns:1fr}
+.sem ul{columns:1}
+table{font-size:14px}
+.stack thead{display:none}
+.stack tr{display:grid;padding:10px 0;border-bottom:1px solid var(--rule)}
+.stack tbody tr:last-child{border-bottom:1.5px solid var(--ink)}
+.stack td{display:flow-root;border:0;padding:2px 0;padding-inline-start:5.5em;text-align:start;white-space:normal}
+.stack td::before{content:attr(data-l);color:var(--mute);float:inline-start;width:5em;margin-inline-start:-5.5em}
+.stack td:first-child{font-weight:600;padding-inline-start:0}
+.stack td:first-child::before{content:none}
+.stack tbody tr:last-child td{border:0}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="top">
+  <div class="lang" role="group" aria-label="Nyelv / Language">
+    <button id="btn-hu" type="button" aria-pressed="true">Magyar</button>
+    <button id="btn-en" type="button" aria-pressed="false">English</button>
+  </div>
+</div>
+
+<header>
+  <!-- Fénykép: cseréld le az <svg>-t erre: <img src="foto.jpg" alt="Hegedüs Tamás"> -->
+  <figure class="photo" aria-label="Hegedüs Tamás">
+    <svg viewBox="0 0 100 100" aria-hidden="true"><text x="50" y="62" text-anchor="middle" font-size="40" font-style="italic" fill="var(--acc)" font-family="STIX Two Text,serif">H.T.</text><line x1="22" y1="76" x2="78" y2="76" stroke="var(--rule)" stroke-width="1.2"/></svg>
+  </figure>
+  <div>
+    <h1><span class="hu">Hegedüs Tamás</span><span class="en">Tamás Hegedüs</span></h1>
+    <p class="role"><span class="hu">matematika BSc hallgató, 3. évfolyam</span><span class="en">BSc student in Mathematics, 3rd year</span></p>
+    <ul class="aff">
+      <li><a href="https://u-szeged.hu"><span class="hu">Szegedi Tudományegyetem</span><span class="en">University of Szeged</span></a> (SZTE)</li>
+      <li><a href="https://www.ttik.u-szeged.hu"><span class="hu">Természettudományi és Informatikai Kar</span><span class="en">Faculty of Science and Informatics</span></a> (TTIK)</li>
+      <li><a href="https://www.math.u-szeged.hu"><span class="hu">Bolyai Intézet</span><span class="en">Bolyai Institute</span></a></li>
+    </ul>
+    <p class="mail"><span>E-mail:</span> <a href="mailto:hgdstms2005@gmail.com">hgdstms2005@gmail.com</a></p>
+  </div>
+</header>
+
+<main>
+<h2 id="tanulmanyok"><span class="n">1</span><span class="hu">Tanulmányok</span><span class="en">Studies</span></h2>
+<p class="lede"><span class="hu">2024 ősze óta a Szegedi Tudományegyetem matematika BSc szakos hallgatója vagyok. A 2025/26-os őszi félévet Erasmus+ ösztöndíjjal a linzi Johannes Kepler Egyetemen töltöttem.</span><span class="en">I have been studying for a BSc in Mathematics at the University of Szeged since autumn 2024. I spent the autumn semester of 2025/26 at Johannes Kepler University Linz on an Erasmus+ exchange.</span></p>
+
+<div class="fig" id="path"><svg id="path-svg" role="img" aria-label="Félévek: 2024 ősz, 2025 tavasz, 2025 ősz Linz, 2026 tavasz, 2026 ősz"></svg></div>
+<p class="cap"><span class="hu"><b>1. ábra.</b> A félévek sorrendje: a felső csúcs a linzi Erasmus+ félév.</span><span class="en"><b>Figure 1.</b> Semester by semester; the raised node is the Erasmus+ term in Linz.</span></p>
+
+<h3 id="jelenlegi"><span class="n">1.1</span><span class="hu">Folyamatban lévő félév</span><span class="en">Ongoing semester</span></h3>
+<dl>
+  <div class="sem now">
+    <dt><span class="hu">2026/27 ősz</span><span class="en">Autumn 2026/27</span><small><span class="hu">SZTE, folyamatban</span><span class="en">SZTE, in progress</span></small></dt>
+    <dd><ul>
+      <li><span class="hu">Kalkulus 3</span><span class="en">Calculus 3</span></li>
+      <li><span class="hu">Valószínűségszámítás</span><span class="en">Probability</span></li>
+      <li><span class="hu">Lineáris algebra 2</span><span class="en">Linear Algebra 2</span></li>
+      <li><span class="hu">Közönséges differenciálegyenletek</span><span class="en">Ordinary Differential Equations</span></li>
+      <li><span class="hu">Numerikus matematika</span><span class="en">Numerical Mathematics</span></li>
+      <li><span class="hu">Kategóriaelmélet</span><span class="en">Category Theory</span></li>
+      <li><span class="hu">Matematikai modellek 2</span><span class="en">Mathematical Models 2</span></li>
+      <li><span class="hu">Mesterséges intelligencia a matematikában</span><span class="en">Artificial Intelligence in Mathematics</span></li>
+    </ul></dd>
+  </div>
+</dl>
+
+<h3 id="korabbi"><span class="n">1.2</span><span class="hu">Korábbi félévek</span><span class="en">Previous semesters</span></h3>
+<dl>
+  <div class="sem">
+    <dt><span class="hu">2025/26 tavasz</span><span class="en">Spring 2025/26</span><small>SZTE</small></dt>
+    <dd><ul>
+      <li><span class="hu">Csoportok és testek</span><span class="en">Groups and Fields</span></li>
+      <li><span class="hu">Matematikai modellek 1</span><span class="en">Mathematical Models 1</span></li>
+      <li><span class="hu">Bevezetés a relativitáselméletbe</span><span class="en">Introduction to Relativity</span></li>
+      <li><span class="hu">Hullámok és optika</span><span class="en">Waves and Optics</span></li>
+    </ul></dd>
+  </div>
+  <div class="sem ex">
+    <dt><span class="hu">2025/26 ősz</span><span class="en">Autumn 2025/26</span><small>Erasmus+, Linz</small></dt>
+    <dd>
+      <p class="where"><a href="https://www.jku.at">Johannes Kepler Universität Linz</a>, <span class="hu">Technische Mathematik BSc (csereszemeszter)</span><span class="en">Technical Mathematics BSc (exchange semester)</span></p>
+      <ul>
+        <li><span class="hu">Algoritmusok és adatszerkezetek</span><span class="en">Algorithms and Data Structures</span></li>
+        <li><span class="hu">Algoritmusok tervezése és elemzése</span><span class="en">Design and Analysis of Algorithms</span></li>
+        <li><span class="hu">Matematikai bizonyítások megértése és írása</span><span class="en">Understanding and Creating Mathematical Proofs</span></li>
+        <li><span class="hu">Játékelmélet</span><span class="en">Game Theory</span></li>
+        <li><span class="hu">Bevezetés a mesterséges intelligenciába</span><span class="en">Introduction to AI</span></li>
+        <li><span class="hu">Python programozás I</span><span class="en">Programming in Python I</span></li>
+        <li><span class="hu">Német nyelv (A1)</span><span class="en">German (A1)</span></li>
+        <li><span class="hu">Gyűrűk és modulusok (SZTE)</span><span class="en">Rings and Modules (SZTE)</span></li>
+      </ul>
+    </dd>
+  </div>
+  <div class="sem">
+    <dt><span class="hu">2024/25 tavasz</span><span class="en">Spring 2024/25</span><small>SZTE</small></dt>
+    <dd><ul>
+      <li><span class="hu">Kalkulus 2</span><span class="en">Calculus 2</span></li>
+      <li><span class="hu">Algebra és számelmélet</span><span class="en">Algebra and Number Theory</span></li>
+      <li><span class="hu">Geometria 1</span><span class="en">Geometry 1</span></li>
+      <li><span class="hu">Kombinatorika</span><span class="en">Combinatorics</span></li>
+      <li><span class="hu">Programozás alapjai 2</span><span class="en">Fundamentals of Programming 2</span></li>
+    </ul></dd>
+  </div>
+  <div class="sem">
+    <dt><span class="hu">2024/25 ősz</span><span class="en">Autumn 2024/25</span><small>SZTE</small></dt>
+    <dd><ul>
+      <li><span class="hu">Kalkulus 1</span><span class="en">Calculus 1</span></li>
+      <li><span class="hu">Lineáris algebra 1</span><span class="en">Linear Algebra 1</span></li>
+      <li><span class="hu">Diszkrét matematika</span><span class="en">Discrete Mathematics</span></li>
+      <li><span class="hu">A matematika alapjai</span><span class="en">Basics of Mathematics</span></li>
+      <li><span class="hu">Programozás alapjai 1</span><span class="en">Fundamentals of Programming 1</span></li>
+      <li><span class="hu">Számítógépes ismeretek matematikusoknak</span><span class="en">Computer Skills for Mathematics</span></li>
+    </ul></dd>
+  </div>
+</dl>
+</main>
+
+<footer>
+  <p><span class="hu">Utolsó módosítás: 2026. november 23.</span><span class="en">Last updated: 23 November 2026.</span></p>
+  <p><span class="hu">Az oldal mesterséges intelligencia segítségével készült a <i>Mesterséges intelligencia a matematikában</i> kurzus keretében.</span><span class="en">This page was made with the help of AI for the course <i>Artificial Intelligence in Mathematics</i>.</span></p>
+</footer>
+</div>
+
+<script>
+{
+  const root = document.documentElement;
+  const svg = document.getElementById('path-svg');
+  const box = document.getElementById('path');
+  const nodes = [
+    {hu:'2024 ősz', en:'Autumn 2024'},
+    {hu:'2025 tavasz', en:'Spring 2025'},
+    {hu:'2025 ősz', en:'Autumn 2025', linz:true},
+    {hu:'2026 tavasz', en:'Spring 2026'},
+    {hu:'2026 ősz', en:'Autumn 2026', now:true}
+  ];
+  const T = {
+    hu:{szte:'SZTE', linz:'JKU Linz', eras:'Erasmus+', now:'most'},
+    en:{szte:'SZTE', linz:'JKU Linz', eras:'Erasmus+', now:'now'}
+  };
+  const lang = () => root.classList.contains('en') ? 'en' : 'hu';
+
+  const trim = (a, b, ha, hb) => {
+    const dx = b.x - a.x, dy = b.y - a.y;
+    const ta = Math.min(dx ? ha.w / Math.abs(dx) : 9, dy ? ha.h / Math.abs(dy) : 9);
+    const tb = Math.min(dx ? hb.w / Math.abs(dx) : 9, dy ? hb.h / Math.abs(dy) : 9);
+    return [a.x + dx * ta, a.y + dy * ta, b.x - dx * tb, b.y - dy * tb];
+  };
+
+  let lastW = 0;
+  const draw = (force) => {
+    const W = svg.clientWidth, H = svg.clientHeight;
+    if (!W || !H || (!force && W === lastW)) return;
+    lastW = W;
+    const L = lang(), t = T[L], vert = W < 560;
+    const hw = vert ? 62 : Math.min(62, W / 12), hh = 16;
+    const pts = nodes.map((n, i) => {
+      if (vert) {
+        const y = 26 + i * (H - 80) / 4;
+        return {x: n.linz ? W * 0.68 : W * 0.34, y};
+      }
+      const x = hw + 8 + i * (W - 2 * hw - 16) / 4;
+      return {x, y: n.linz ? H * 0.24 : H * 0.7};
+    });
+    let s = '<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1,1 L9,5 L1,9" fill="none" stroke="var(--ink)" stroke-width="1.4"/></marker></defs>';
+    for (let i = 0; i < 4; i++) {
+      const a = pts[i], b = pts[i + 1];
+      const [x1, y1, x2, y2] = trim(a, b, {w:hw, h:hh}, {w:hw + 6, h:hh + 6});
+      const ex = nodes[i + 1].linz || nodes[i].linz;
+      s += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--ink)" stroke-width="1.2" marker-end="url(#ah)"${ex ? ' stroke-dasharray="5 4"' : ''}/>`;
+      if (nodes[i + 1].linz) {
+        const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+        s += vert
+          ? `<text x="${mx - 10}" y="${my + 20}" text-anchor="end" font-style="italic" font-size="14" fill="var(--acc)">${t.eras}</text>`
+          : `<text x="${mx - 8}" y="${my - 6}" text-anchor="end" font-style="italic" font-size="14" fill="var(--acc)">${t.eras}</text>`;
+      }
+    }
+    nodes.forEach((n, i) => {
+      const p = pts[i];
+      if (n.now) s += `<rect x="${p.x - hw}" y="${p.y - hh - 2}" width="${hw * 2}" height="${hh * 2 + 4}" rx="3" fill="var(--tint)" stroke="var(--acc)" stroke-width="1.2"/>`;
+      s += `<text x="${p.x}" y="${p.y + 5}" text-anchor="middle" font-size="${W < 420 ? 15 : 16}" font-style="italic" fill="${n.linz || n.now ? 'var(--acc)' : 'var(--ink)'}">${n[L]}</text>`;
+      const under = n.linz ? t.linz : (n.now ? t.szte + ', ' + t.now : t.szte);
+      if (vert) {
+        if (n.linz || n.now) s += `<text x="${p.x}" y="${p.y + hh + 20}" text-anchor="middle" font-size="13" fill="var(--mute)">${under}</text>`;
+      } else {
+        const uy = n.linz ? p.y - hh - 8 : p.y + hh + 22;
+        s += `<text x="${p.x}" y="${uy}" text-anchor="middle" font-size="13" fill="var(--mute)">${under}</text>`;
+      }
+    });
+    svg.innerHTML = s;
+  };
+  const ro = new ResizeObserver(() => draw(false));
+  ro.observe(box);
+
+  const setLang = (l) => {
+    root.classList.toggle('en', l === 'en');
+    root.lang = l;
+    const lbl = {hu:{k:'Kód',o:'Oktató',f:'Forma',c:'Kredit'}, en:{k:'Code',o:'Instructor',f:'Format',c:'Credits'}}[l];
+    document.querySelectorAll('.stack td[data-l]').forEach(td => {
+      const i = td.cellIndex;
+      td.dataset.l = i === 1 ? lbl.k : i === 2 ? lbl.o : i === 3 ? lbl.f : lbl.c;
+    });
+    document.getElementById('btn-hu').setAttribute('aria-pressed', l === 'hu');
+    document.getElementById('btn-en').setAttribute('aria-pressed', l === 'en');
+    draw(true);
+  };
+  document.getElementById('btn-hu').addEventListener('click', () => { setLang('hu'); history.replaceState(null, '', location.pathname + location.search); });
+  document.getElementById('btn-en').addEventListener('click', () => { setLang('en'); location.hash = 'en'; });
+  window.addEventListener('hashchange', () => setLang(location.hash === '#en' ? 'en' : 'hu'));
+  setLang(location.hash === '#en' ? 'en' : 'hu');
+}
+</script>
+</body>
+</html>
